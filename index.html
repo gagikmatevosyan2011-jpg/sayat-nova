@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Սայաթ-Նովա․ Կյանքի և ստեղծագործության քարտեզ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts for Armenian -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian:wght@400;600;700;900&family=Noto+Sans+Armenian:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            100: '#FAF6ED',
+                            200: '#F3EBD8',
+                            300: '#E8DAB7',
+                            400: '#D5BE8A',
+                        },
+                        burgundy: {
+                            700: '#6B1D2F',
+                            800: '#4A111E',
+                            900: '#2D0A11',
+                        },
+                        gold: {
+                            400: '#E5C158',
+                            500: '#D4AF37',
+                            600: '#AA820A',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif Armenian"', 'serif'],
+                        sans: ['"Noto Sans Armenian"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #2D0A11;
+            color: #2A1D17;
+            font-family: 'Noto Sans Armenian', sans-serif;
+            background-image: radial-gradient(#4A111E 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .parchment-bg {
+            background: #F3EBD8;
+            background-image: radial-gradient(#E8DAB7 1px, transparent 1px);
+            background-size: 16px 16px;
+            box-shadow: inset 0 0 40px rgba(74, 17, 30, 0.15);
+        }
+
+        .gold-border {
+            border: 2px solid #D4AF37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .ornament-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #D4AF37;
+        }
+
+        .ornament-divider::before,
+        .ornament-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #D4AF37;
+            margin: 0 10px;
+            opacity: 0.5;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2D0A11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12 text-slate-800">
+
+    <!-- Top Header / Hero -->
+    <header class="relative bg-burgundy-900 text-parchment-100 py-10 px-4 border-b-4 border-gold-500 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
+            <!-- Armenian Traditional Pattern Graphic -->
+            <svg class="w-96 h-96 text-gold-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z"/>
+            </svg>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block p-2 bg-burgundy-800 rounded-full border border-gold-500 mb-3 shadow-lg">
+                <i data-lucide="music" class="w-8 h-8 text-gold-400"></i>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-gold-400 tracking-wide mb-2">
+                ՍԱՅԱԹ-ՆՈՎԱ
+            </h1>
+            <p class="text-sm md:text-lg font-serif italic text-parchment-300 max-w-xl mx-auto mb-4">
+                «Աշխարհումս ախ չիմ քաշի, քանի վուր ջան իս...»
+            </p>
+            <div class="ornament-divider max-w-md mx-auto my-3 text-gold-400 font-serif text-sm">
+                ✦ 1712 - 1795 ✦
+            </div>
+            <p class="text-xs md:text-sm text-parchment-200/80 max-w-2xl mx-auto leading-relaxed mt-2">
+                Թիֆլիսեցի մեծն աշուղ, քնարերգու, երգահան և բազմալեզու տաղասաց: Ինտերակտիվ քարտեզ-ժամանակագրություն՝ նվիրված նրա կյանքին ու հանճարեղ ժառանգությանը:
+            </p>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="sticky top-0 z-40 bg-burgundy-800/95 backdrop-blur border-b border-gold-500/40 shadow-xl">
+        <div class="max-w-4xl mx-auto flex justify-around p-2 text-xs md:text-sm font-serif">
+            <button onclick="switchTab('timeline')" id="tab-timeline" class="tab-btn px-3 py-2 rounded-lg text-gold-400 font-bold bg-burgundy-900 border border-gold-500/50 flex items-center gap-1.5 transition">
+                <i data-lucide="map-pin" class="w-4 h-4"></i> Կյանքի Ուղին
+            </button>
+            <button onclick="switchTab('player')" id="tab-player" class="tab-btn px-3 py-2 rounded-lg text-parchment-300 hover:text-gold-400 flex items-center gap-1.5 transition">
+                <i data-lucide="disc" class="w-4 h-4"></i> Երգացանկ
+            </button>
+            <button onclick="switchTab('dictionary')" id="tab-dictionary" class="tab-btn px-3 py-2 rounded-lg text-parchment-300 hover:text-gold-400 flex items-center gap-1.5 transition">
+                <i data-lucide="book-open" class="w-4 h-4"></i> Բառարան
+            </button>
+            <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-3 py-2 rounded-lg text-parchment-300 hover:text-gold-400 flex items-center gap-1.5 transition">
+                <i data-lucide="help-circle" class="w-4 h-4"></i> Խաղ-Կվիզ
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 pt-8">
+
+        <!-- TAB 1: TIMELINE & MAP ROADMAP -->
+        <section id="section-timeline" class="tab-content space-y-6">
+            <div class="bg-burgundy-800/50 border border-gold-500/30 rounded-xl p-4 text-parchment-100 flex items-center justify-between">
+                <div>
+                    <h2 class="font-serif font-bold text-gold-400 text-lg">Ինտերակտիվ Ժամանակագրություն</h2>
+                    <p class="text-xs text-parchment-300">Սեղմեք յուրաքանչյուր փուլի վրա՝ մանրամասները տեսնելու համար</p>
+                </div>
+                <i data-lucide="compass" class="w-8 h-8 text-gold-400 opacity-80"></i>
+            </div>
+
+            <!-- Timeline Items Container -->
+            <div id="timeline-container" class="relative pl-6 md:pl-8 border-l-2 border-gold-500/60 space-y-8 my-6">
+                <!-- Step 1 -->
+                <div class="timeline-step relative group cursor-pointer" onclick="selectStep(1)">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-burgundy-900 border-2 border-gold-400 flex items-center justify-center text-gold-400 font-bold shadow-md transition group-hover:scale-110">
+                        1
+                    </div>
+                    <div class="parchment-bg rounded-xl p-5 border border-gold-500/40 shadow-lg transition duration-200 group-hover:border-gold-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold px-2 py-1 bg-burgundy-800 text-gold-400 rounded">1712/1722 - Թիֆլիս / Սանահին</span>
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-burgundy-800"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-burgundy-900 mb-1">Ծնունդ, Մանկություն և Ջուլհակություն</h3>
+                        <p class="text-xs text-amber-900 font-medium mb-2">Հարություն Սայադյան (Սայաթ-Նովա)</p>
+                        <p class="text-sm text-slate-700 line-clamp-2">
+                            Ծնվել է Թիֆլիսի Հավլաբար թաղամասում (ըստ այլ աղբյուրների՝ Սանահինում): Վաղ տարիքում սովորել է ջուլհակություն, ապա ինքնուրույն նվագել է սովորել քամանչա ու չոնգուր...
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-step relative group cursor-pointer" onclick="selectStep(2)">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-burgundy-900 border-2 border-gold-400 flex items-center justify-center text-gold-400 font-bold shadow-md transition group-hover:scale-110">
+                        2
+                    </div>
+                    <div class="parchment-bg rounded-xl p-5 border border-gold-500/40 shadow-lg transition duration-200 group-hover:border-gold-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold px-2 py-1 bg-burgundy-800 text-gold-400 rounded">1750-ականներ - Թիֆլիսի Արքունիք</span>
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-burgundy-800"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-burgundy-900 mb-1">Վրաց Հերակլ II Թագավորի Արքունական Աշուղը</h3>
+                        <p class="text-xs text-amber-900 font-medium mb-2">Փառքի և Գաղտնի Սիրո Գագաթնակետը</p>
+                        <p class="text-sm text-slate-700 line-clamp-2">
+                            Սայաթ-Նովան դառնում է Վրաստանի Հերակլ II թագավորի պալատական երգիչն ու սազանդարը: Այստեղ ստեղծում է իր անմահ տաղերը հայերեն, վրացերեն և թուրքերեն/ադրբեջաներեն...
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-step relative group cursor-pointer" onclick="selectStep(3)">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-burgundy-900 border-2 border-gold-400 flex items-center justify-center text-gold-400 font-bold shadow-md transition group-hover:scale-110">
+                        3
+                    </div>
+                    <div class="parchment-bg rounded-xl p-5 border border-gold-500/40 shadow-lg transition duration-200 group-hover:border-gold-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold px-2 py-1 bg-burgundy-800 text-gold-400 rounded">1759 - 1795 - Աքսոր և Հաղպատ</span>
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-burgundy-800"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-burgundy-900 mb-1">Աքսոր Պալատից և Հոգևոր Ծառայություն</h3>
+                        <p class="text-xs text-amber-900 font-medium mb-2">Տեր Ստեփանոս քահանան Հաղպատի վանքում</p>
+                        <p class="text-sm text-slate-700 line-clamp-2">
+                            Արքունիքից աքսորվելուց հետո ձեռնադրվում է քահանա՝ ստանալով Տեր Ստեփանոս անունը: Երկար տարիներ ապրում և ծառայում է Հաղպատի վանական համալիրում...
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-step relative group cursor-pointer" onclick="selectStep(4)">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-burgundy-900 border-2 border-gold-400 flex items-center justify-center text-gold-400 font-bold shadow-md transition group-hover:scale-110">
+                        4
+                    </div>
+                    <div class="parchment-bg rounded-xl p-5 border border-gold-500/40 shadow-lg transition duration-200 group-hover:border-gold-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold px-2 py-1 bg-burgundy-800 text-gold-400 rounded">1795 - Թիֆլիս</span>
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-burgundy-800"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-burgundy-900 mb-1">Նահատակությունը Սուրբ Գևորգ Եկեղեցում</h3>
+                        <p class="text-xs text-amber-900 font-medium mb-2">Աղա Մուհամմադ խանի արշավանքը</p>
+                        <p class="text-sm text-slate-700 line-clamp-2">
+                            Պարսկական զորքերի ներխուժման ժամանակ Սայաթ-Նովան հրաժարվում է հավատափոխ լինել և նահատակվում է Թիֆլիսի Սուրբ Գևորգ եկեղեցու բակում...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: AUDIO PLAYER / SONGS -->
+        <section id="section-player" class="tab-content hidden space-y-6">
+            <div class="parchment-bg rounded-2xl p-6 border-2 border-gold-500 shadow-2xl">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-burgundy-800">Երաժշտական Ժառանգություն</span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-burgundy-900 mt-1">Սայաթ-Նովայի Անմահ Տաղերը</h2>
+                </div>
+
+                <!-- Current Track Display -->
+                <div class="bg-burgundy-900 rounded-xl p-6 text-parchment-100 border border-gold-500/50 shadow-inner text-center relative overflow-hidden mb-6">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-burgundy-800 border-2 border-gold-400 flex items-center justify-center mb-3 shadow-lg">
+                        <i data-lucide="music-4" class="w-10 h-10 text-gold-400 animate-pulse"></i>
+                    </div>
+                    <h3 id="player-title" class="text-xl font-serif font-bold text-gold-400">Աշխարհումս ախ չիմ քաշի</h3>
+                    <p id="player-subtitle" class="text-xs text-parchment-300 mt-1">Քամանչայի և վոկալի դասական կատարում</p>
+
+                    <!-- Song Snippet Quote -->
+                    <div class="mt-4 p-3 bg-burgundy-800/80 rounded-lg border border-gold-500/20 text-xs italic text-parchment-200 max-w-md mx-auto" id="player-lyrics">
+                        «Աշխարհումս ախ չիմ քաշի, քանի վուր ջան իս.<br>
+                        Ջահրա բոյիդ ղուրբան ըլնիմ, շաքարում նան իս...»
+                    </div>
+
+                    <!-- Audio Progress Bar Simulation -->
+                    <div class="mt-6 space-y-2">
+                        <div class="w-full bg-burgundy-950 h-2 rounded-full overflow-hidden border border-gold-500/30 cursor-pointer" onclick="seekAudio(event)">
+                            <div id="audio-progress" class="bg-gold-500 h-full w-1/3 transition-all"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] text-parchment-300">
+                            <span id="current-time">0:42</span>
+                            <span id="total-time">3:15</span>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex items-center justify-center gap-4 mt-4">
+                        <button onclick="prevTrack()" class="p-2 rounded-full hover:bg-burgundy-800 text-gold-400 transition"><i data-lucide="skip-back" class="w-5 h-5"></i></button>
+                        <button id="play-btn" onclick="togglePlay()" class="p-4 rounded-full bg-gold-500 hover:bg-gold-400 text-burgundy-900 font-bold transition shadow-lg"><i data-lucide="play" class="w-6 h-6 fill-current"></i></button>
+                        <button onclick="nextTrack()" class="p-2 rounded-full hover:bg-burgundy-800 text-gold-400 transition"><i data-lucide="skip-forward" class="w-5 h-5"></i></button>
+                    </div>
+                </div>
+
+                <!-- Playlist -->
+                <div class="space-y-2">
+                    <h4 class="font-serif font-bold text-burgundy-900 text-sm mb-2">Ընտրեք երգը list-ից․</h4>
+                    
+                    <div onclick="playTrack(0)" class="track-item p-3 rounded-lg border border-gold-500/30 bg-parchment-100 hover:bg-parchment-200 cursor-pointer flex items-center justify-between transition">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="disc" class="w-5 h-5 text-burgundy-800"></i>
+                            <div>
+                                <p class="font-serif font-bold text-sm text-burgundy-900">1. Աշխարհումս ախ չիմ քաշի</p>
+                                <p class="text-xs text-slate-600">Հայտնի սիրային տաղ</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-amber-900">3:15</span>
+                    </div>
+
+                    <div onclick="playTrack(1)" class="track-item p-3 rounded-lg border border-gold-500/30 bg-parchment-100 hover:bg-parchment-200 cursor-pointer flex items-center justify-between transition">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="disc" class="w-5 h-5 text-burgundy-800"></i>
+                            <div>
+                                <p class="font-serif font-bold text-sm text-burgundy-900">2. Թամամ աշխարհ պտուտ եկա</p>
+                                <p class="text-xs text-slate-600">Գովք սիրեցյալին և գեղեցկությանը</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-amber-900">4:02</span>
+                    </div>
+
+                    <div onclick="playTrack(2)" class="track-item p-3 rounded-lg border border-gold-500/30 bg-parchment-100 hover:bg-parchment-200 cursor-pointer flex items-center justify-between transition">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="disc" class="w-5 h-5 text-burgundy-800"></i>
+                            <div>
+                                <p class="font-serif font-bold text-sm text-burgundy-900">3. Քանի վուր ջան իմ</p>
+                                <p class="text-xs text-slate-600">Խորիմաստ քնարական երգ</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-amber-900">2:48</span>
+                    </div>
+
+                    <div onclick="playTrack(3)" class="track-item p-3 rounded-lg border border-gold-500/30 bg-parchment-100 hover:bg-parchment-200 cursor-pointer flex items-center justify-between transition">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="disc" class="w-5 h-5 text-burgundy-800"></i>
+                            <div>
+                                <p class="font-serif font-bold text-sm text-burgundy-900">4. Քամանչա</p>
+                                <p class="text-xs text-slate-600">Ձոն իր նվագարանին</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-amber-900">3:30</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: GLOSSARY / DICTIONARY -->
+        <section id="section-dictionary" class="tab-content hidden space-y-6">
+            <div class="parchment-bg rounded-2xl p-6 border-2 border-gold-500 shadow-2xl">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-burgundy-800">Բառապաշար</span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-burgundy-900 mt-1">Աշուղական Բառարան</h2>
+                    <p class="text-xs text-slate-600 mt-1">Սայաթ-Նովայի երգերում հանդիպող արաբերեն, պարսկերեն և հնացած բառերի բացատրություն</p>
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative mb-6">
+                    <i data-lucide="search" class="w-5 h-5 absolute left-3 top-3 text-amber-800"></i>
+                    <input type="text" id="dict-search" oninput="filterDictionary()" placeholder="Փնտրել բառը (օր․ ղալամ, յար)..." class="w-full pl-10 pr-4 py-2 bg-parchment-100 border border-gold-500/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm">
+                </div>
+
+                <!-- Glossary Grid -->
+                <div id="dictionary-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Word cards will be rendered here via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: INTERACTIVE QUIZ -->
+        <section id="section-quiz" class="tab-content hidden space-y-6">
+            <div class="parchment-bg rounded-2xl p-6 border-2 border-gold-500 shadow-2xl">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-burgundy-800">Գիտելիքների Ստուգում</span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-burgundy-900 mt-1">Որքա՞ն լավ գիտեք Սայաթ-Նովային</h2>
+                </div>
+
+                <div id="quiz-card" class="bg-parchment-100 rounded-xl p-6 border border-gold-500/50 shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <span id="quiz-step-count" class="text-xs font-bold text-burgundy-800 bg-parchment-200 px-3 py-1 rounded-full">Հարց 1 / 4</span>
+                        <span id="quiz-score" class="text-xs font-bold text-amber-800">Միավորներ: 0</span>
+                    </div>
+
+                    <h3 id="quiz-question" class="font-serif font-bold text-lg text-burgundy-900 mb-4">
+                        Ի՞նչ էր Սայաթ-Նովայի իսկական անուն-ազգանունը:
+                    </h3>
+
+                    <div id="quiz-options" class="space-y-3">
+                        <!-- Options generated by JS -->
+                    </div>
+
+                    <div id="quiz-feedback" class="mt-4 p-3 rounded-lg text-xs hidden font-medium"></div>
+
+                    <button id="quiz-next-btn" onclick="nextQuestion()" class="mt-6 w-full py-3 bg-burgundy-800 hover:bg-burgundy-900 text-gold-400 font-bold rounded-xl transition shadow hidden">
+                        Հաջորդ հարցը
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Detailed Step View -->
+    <div id="detail-modal" class="fixed inset-0 bg-burgundy-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="parchment-bg rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 border-2 border-gold-500 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 rounded-full bg-burgundy-800 text-gold-400 hover:bg-burgundy-900">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div id="modal-content">
+                <!-- Content inserted dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Data for Timeline
+        const timelineData = {
+            1: {
+                title: "Ծնունդ և Մանկություն",
+                subtitle: "1712/1722 - Թիֆլիս / Սանահին",
+                location: "Հավլաբար թաղամաս, Թիֆլիս",
+                details: "Սայաթ-Նովան (իսկական անունը՝ Հարություն Սայադյան) ծնվել է արհեստավորի ընտանիքում: Վաղ տարիքում սովորել է ջուլհակություն, ապա ինքնուրույն տիրապետել է լարային նվագարաններին (քամանչա, չոնգուր, սազ): Նրա երաժշտական ձիրքն ու բանաստեղծական տաղանդը շատ շուտ են ի հայտ եկել:",
+                quote: "«Աշուղական արվեստը նա սովորել է ժողովրդական վարպետներից՝ դառնալով Կովկասի ամենասիրված երգիչներից մեկը։»",
+                icon: "baby"
+            },
+            2: {
+                title: "Թիֆլիսի Արքունիք",
+                subtitle: "1750-ականներ",
+                location: "Վրաց Հերակլ II թագավորի պալատ",
+                details: "Հերակլ II թագավորը նրան հրավիրում է արքունիք որպես պալատական աշուղ: Սայաթ-Նովան մեծ հարգանք էր վայելում, սակայն նրա գաղտնի սերը թագավորի քրոջ՝ Աննա Բատոնիշվիլու նկատմամբ առիթ դարձավ արքունական դավադրությունների և աքսորի:",
+                quote: "«Թամամ աշխարհ պտուտ եկա, չիմ տեսի քիզի նման...»",
+                icon: "crown"
+            },
+            3: {
+                title: "Աքսոր և Հաղպատի Վանք",
+                subtitle: "1759 - 1795",
+                location: "Հաղպատի վանական համալիր",
+                details: "Պալատից վտարվելուց հետո նրան ստիպում են ընդունել կրոնավորություն: Սայաթ-Նովան ձեռնադրվում է քահանա՝ ստանալով Տեր Ստեփանոս անունը և ծառայում է Հաղպատի վանքում, որտեղ շարունակում է գրել ու արտագանձել ձեռագրեր:",
+                quote: "«Ղալամը ձեռիս՝ գիր եմ գրում, սիրտս՝ լիքը ցավ ու ցավով...»",
+                icon: "church"
+            },
+            4: {
+                title: "Նահատակություն",
+                subtitle: "1795",
+                location: "Թիֆլիս, Սուրբ Գևորգ եկեղեցի",
+                details: "1795 թվականին պարսից Աղա Մուհամմադ խանի զորքերը ներխուժում են Թիֆլիս: Պարսիկ զինվորները պահանջում են հրաժարվել քրիստոնեական հավատքից, սակայն Սայաթ-Նովան հրաժարվում է և նահատակվում եկեղեցու բակում:",
+                quote: "«Եկեղեցուց դուրս չեմ գա, հավատս չեմ տա...»",
+                icon: "flame"
+            }
+        };
+
+        // Dictionary Data
+        const dictionaryData = [
+            { word: "Ղալամ", meaning: "Գրիչ, փետրագրիչ (արաբերեն/պարսկերեն)" },
+            { word: "Յար", meaning: "Սիրեցյալ, սիրած էակ" },
+            { word: "Զար", meaning: "Ոսկեթել կտոր, ոսկի" },
+            { word: "Աշուղ", meaning: "Ժողովրդական երգիչ-բանաստեղծ" },
+            { word: "Քամանչա", meaning: "Լարային աղեղնավոր նվագարան" },
+            { word: "Բլբուլ", meaning: "Սոխակ (սիրո խորհրդանիշ)" },
+            { word: "Սազանդար", meaning: "Նվագածու, երաժիշտ" },
+            { word: "Թամամ", meaning: "Ամբողջ, բոլոր, լիակատար" }
+        ];
+
+        // Track Data
+        const tracks = [
+            { title: "Աշխարհումս ախ չիմ քաշի", subtitle: "Սիրային դասական տաղ", duration: "3:15", lyrics: "«Աշխարհումս ախ չիմ քաշի, քանի վուր ջան իս.<br>Ջահրա բոյիդ ղուրբան ըլնիմ, շաքարում նան իս...»" },
+            { title: "Թամամ աշխարհ պտուտ եկա", subtitle: "Գովք սիրեցյալին", duration: "4:02", lyrics: "«Թամամ աշխարհ պտուտ եկա, չիմ տեսի քիզի նման.<br>Առանց քիզի ճար չիմ անի, իմ անգին, ազիզ ջան...»" },
+            { title: "Քանի վուր ջան իմ", subtitle: "Քնարական երգ", duration: "2:48", lyrics: "«Քանի վուր ջան իմ, յար, քիզ ղուրբան կընիմ...»" },
+            { title: "Քամանչա", subtitle: "Ձոն նվագարանին", duration: "3:30", lyrics: "«Ամեն մարդ չի կանա խմի իմ ջուրըն՝ ուրիշ ջրեն է.<br>Ամեն մարդ չի կանա կարդա իմ գիրըն՝ ուրիշ գրեն է...»" }
+        ];
+
+        let currentTrackIdx = 0;
+        let isPlaying = false;
+
+        // Switch Tabs
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-gold-400', 'font-bold', 'bg-burgundy-900', 'border', 'border-gold-500/50');
+                btn.classList.add('text-parchment-300');
+            });
+
+            document.getElementById(`section-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.classList.add('text-gold-400', 'font-bold', 'bg-burgundy-900', 'border', 'border-gold-500/50');
+            activeBtn.classList.remove('text-parchment-300');
+        }
+
+        // Modal for Step Details
+        function selectStep(stepId) {
+            const data = timelineData[stepId];
+            const content = document.getElementById('modal-content');
+            
+            content.innerHTML = `
+                <div class="text-center mb-4">
+                    <span class="text-xs font-bold text-burgundy-800 bg-parchment-300 px-3 py-1 rounded-full border border-gold-500/40">${data.subtitle}</span>
+                    <h3 class="text-2xl font-serif font-bold text-burgundy-900 mt-2">${data.title}</h3>
+                    <p class="text-xs text-amber-900 font-medium flex items-center justify-center gap-1 mt-1">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${data.location}
+                    </p>
+                </div>
+                <div class="space-y-3 text-sm text-slate-800 leading-relaxed border-t border-b border-gold-500/30 py-4 my-2">
+                    <p>${data.details}</p>
+                </div>
+                <div class="p-3 bg-burgundy-900 text-gold-400 rounded-xl text-xs italic text-center border border-gold-500/40">
+                    ${data.quote}
+                </div>
+            `;
+            
+            lucide.createIcons();
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        // Render Dictionary
+        function renderDictionary(items) {
+            const container = document.getElementById('dictionary-grid');
+            container.innerHTML = items.map(item => `
+                <div class="p-3 bg-parchment-100 rounded-xl border border-gold-500/40 shadow-sm hover:border-gold-500 transition">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-serif font-bold text-burgundy-900 text-base">${item.word}</span>
+                        <i data-lucide="book-type" class="w-4 h-4 text-amber-800 opacity-60"></i>
+                    </div>
+                    <p class="text-xs text-slate-700">${item.meaning}</p>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function filterDictionary() {
+            const query = document.getElementById('dict-search').value.toLowerCase();
+            const filtered = dictionaryData.filter(item => 
+                item.word.toLowerCase().includes(query) || 
+                item.meaning.toLowerCase().includes(query)
+            );
+            renderDictionary(filtered);
+        }
+
+        // Audio Player Simulation
+        function playTrack(idx) {
+            currentTrackIdx = idx;
+            const track = tracks[idx];
+            document.getElementById('player-title').innerText = track.title;
+            document.getElementById('player-subtitle').innerText = track.subtitle;
+            document.getElementById('player-lyrics').innerHTML = track.lyrics;
+            document.getElementById('total-time').innerText = track.duration;
+            document.getElementById('current-time').innerText = "0:00";
+            document.getElementById('audio-progress').style.width = "0%";
+            isPlaying = true;
+            updatePlayBtn();
+        }
+
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            updatePlayBtn();
+        }
+
+        function updatePlayBtn() {
+            const btn = document.getElementById('play-btn');
+            btn.innerHTML = isPlaying ? `<i data-lucide="pause" class="w-6 h-6 fill-current"></i>` : `<i data-lucide="play" class="w-6 h-6 fill-current"></i>`;
+            lucide.createIcons();
+        }
+
+        function nextTrack() {
+            currentTrackIdx = (currentTrackIdx + 1) % tracks.length;
+            playTrack(currentTrackIdx);
+        }
+
+        function prevTrack() {
+            currentTrackIdx = (currentTrackIdx - 1 + tracks.length) % tracks.length;
+            playTrack(currentTrackIdx);
+        }
+
+        function seekAudio(e) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            document.getElementById('audio-progress').style.width = `${pos * 100}%`;
+        }
+
+        // Quiz Logic
+        const quizData = [
+            {
+                q: "Ի՞նչ էր Սայաթ-Նովայի իսկական անուն-ազգանունը:",
+                options: ["Հարություն Սայադյան", "Սարգիս Նովայան", "Գևորգ Թիֆլիսցի", "Ստեփանոս Հաղպատցի"],
+                correct: 0
+            },
+            {
+                q: "Ո՞ր վրաց թագավորի արքունական աշուղն էր նա:",
+                options: ["Վախթանգ VI", "Հերակլ II", "Դավիթ Շինարար", "Գեորգի XII"],
+                correct: 1
+            },
+            {
+                q: "Ո՞ր վանքում է Սայաթ-Նովան ծառայել որպես քահանա (Տեր Ստեփանոս):",
+                options: ["Տաթևի վանք", "Սանահինի վանք", "Հաղպատի վանք", "Գեղարդավանք"],
+                correct: 2
+            },
+            {
+                q: "Ի՞նչ է նշանակում «Ղալամ» բառը նրա տաղերում:",
+                options: ["Նվագարան", "Գրիչ / Փետրագրիչ", "Ոսկե գոհար", "Սիրեցյալ"],
+                correct: 1
+            }
+        ];
+
+        let quizIndex = 0;
+        let score = 0;
+
+        function renderQuiz() {
+            const q = quizData[quizIndex];
+            document.getElementById('quiz-step-count').innerText = `Հարց ${quizIndex + 1} / ${quizData.length}`;
+            document.getElementById('quiz-question').innerText = q.q;
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = q.options.map((opt, i) => `
+                <button onclick="checkAnswer(${i})" class="w-full text-left p-3 rounded-xl border border-gold-500/40 bg-parchment-200 hover:bg-gold-500/20 text-burgundy-900 font-medium text-sm transition">
+                    ${opt}
+                </button>
+            `).join('');
+        }
+
+        function checkAnswer(selectedIdx) {
+            const q = quizData[quizIndex];
+            const feedback = document.getElementById('quiz-feedback');
+            
+            if (selectedIdx === q.correct) {
+                score += 25;
+                document.getElementById('quiz-score').innerText = `Միավորներ: ${score}`;
+                feedback.className = "mt-4 p-3 rounded-lg text-xs font-medium bg-emerald-100 text-emerald-900 border border-emerald-400";
+                feedback.innerText = "Ճիշտ է: Ապրեք:";
+            } else {
+                feedback.className = "mt-4 p-3 rounded-lg text-xs font-medium bg-rose-100 text-rose-900 border border-rose-400";
+                feedback.innerText = `Սխալ է: Ճիշտ պատասխանն էր՝ ${q.options[q.correct]}`;
+            }
+            
+            feedback.classList.remove('hidden');
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            quizIndex++;
+            if (quizIndex < quizData.length) {
+                renderQuiz();
+            } else {
+                document.getElementById('quiz-card').innerHTML = `
+                    <div class="text-center py-6">
+                        <i data-lucide="award" class="w-16 h-16 text-gold-500 mx-auto mb-2"></i>
+                        <h3 class="text-2xl font-serif font-bold text-burgundy-900">Վիկտորինան Ավարտվեց</h3>
+                        <p class="text-sm text-slate-700 mt-2">Ձեր վերջնական արդյունքը՝ <span class="font-bold text-burgundy-800">${score} / 100</span></p>
+                        <button onclick="restartQuiz()" class="mt-6 px-6 py-2 bg-burgundy-800 text-gold-400 rounded-xl font-bold shadow hover:bg-burgundy-900">
+                            Կրկնել նորից
+                        </button>
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+        }
+
+        function restartQuiz() {
+            quizIndex = 0;
+            score = 0;
+            document.getElementById('quiz-score').innerText = `Միավորներ: 0`;
+            renderQuiz();
+        }
+
+        // On Load Init
+        window.onload = function() {
+            renderDictionary(dictionaryData);
+            renderQuiz();
+        };
+    </script>
+</body>
+</html>
